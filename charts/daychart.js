@@ -1,13 +1,26 @@
 var _chart;
 var selected = "http://61.72.187.6/attn/maker";
 
-// 파라메터 정보가 저장될 오브젝트
-// common.js 같은 모든 페이지에서 로딩되는 js 파일에 넣어두면 됨.
-$.getJSON("https://charttest-sungheeek.c9users.io/searchtest.json", function(data){
+var getParam = function(key){
+    var _parammap = {};
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+
+        _parammap[decode(arguments[1])] = decode(arguments[2]);
+    });
+
+    return _parammap[key];
+};
+
+var companycode = getParam("name");
+
+$.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
   var json_data = "";
 
   $.each(data, function(key, value){
-    json_data += value.companycode;
+    json_data += value.code;
   });
   console.log(json_data);
   $(function stock(){
