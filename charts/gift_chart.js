@@ -1,30 +1,13 @@
 var _chart;
-var selected = "http://61.72.187.6/phps/giftChart";
+var selected = "http://13.125.147.26/phps/giftChart";
 
-// 파라메터 정보가 저장될 오브젝트
-// common.js 같은 모든 페이지에서 로딩되는 js 파일에 넣어두면 됨.
-var getParam = function(key){
-    var _parammap = {};
-    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-
-        _parammap[decode(arguments[1])] = decode(arguments[2]);
-    });
-
-    return _parammap[key];
-};
-
-var companycode = getParam("companycode");
-console.log(companycode);
-
-  $(function stock(){
-    Highcharts.setOptions({
-      global : {
-          useUTC : false
-        }
-    });
+$(function stock(){
+  Highcharts.setOptions({
+    global : {
+        useUTC : false
+      }
+  });
+    var test;
     const redraw = (event) => {
       const chartTarget = event.target;
 
@@ -60,7 +43,12 @@ console.log(companycode);
       var volumeColor = '';
       var ohlc = [],
           volume = [],
-          volumeColor = '',
+          Hsma = [],
+          HsmaSum = [],
+          SsmaSum = [],
+          Ssma = [],
+          gHsmaSum = [],
+          gSsmaSum = [],
           dataLength = data.length;
 
       for (i = 0; i < dataLength; i++) {
@@ -75,7 +63,59 @@ console.log(companycode);
           data[i][0], // the date
           data[i][5] // the volume
         ]);
+        Hsma.push([
+          data[i][0],
+          data[i][2]
+        ]);
+        Ssma.push([
+          data[i][0],
+          data[i][3]
+        ]);
+        // console.log(volume);
     }
+    var Hresult = 0;
+    var Hcusma = 0;
+    var Sresult = 0;
+    var Scusma = 0;
+    for(var i = Hsma.length-1; i >= 11; i--){
+      for(var j = 1; j < 12; j++){
+        Hcusma += parseFloat(Hsma[i-j][1]);
+        Scusma += parseFloat(Ssma[i-j][1]);
+      }
+      Hresult = (Hcusma / 11) * 1.00095;
+      // Hresult = (Math.ceil(Hresult));
+      Hcusma = 0;
+      Sresult = (Scusma / 11) * 0.99899;
+      // Sresult = (Math.ceil(Sresult));
+      Scusma = 0;
+      HsmaSum.push([Hsma[i][0],Hresult]);
+      SsmaSum.push([Ssma[i][0],Sresult]);
+    }
+    HsmaSum = HsmaSum.reverse();
+    SsmaSum = SsmaSum.reverse();
+
+    var gHresult = 0;
+    var gHcusma = 0;
+    var gSresult = 0;
+    var gScusma = 0;
+    for(var i = Hsma.length-1; i >= 29; i--){
+      for(var j = 1; j < 30; j++){
+        gHcusma += parseFloat(Hsma[i-j][1]);
+        gScusma += parseFloat(Ssma[i-j][1]);
+      }
+      gHresult = (gHcusma / 30) * 1.03586;
+      // Hresult = (Math.ceil(Hresult));
+      gHcusma = 0;
+      console.log(gHresult);
+      gSresult = (gScusma / 30) * 1.0331;
+      // Sresult = (Math.ceil(Sresult));
+      gScusma = 0;
+      gHsmaSum.push([Hsma[i][0],gHresult]);
+      gSsmaSum.push([Ssma[i][0],gSresult]);
+    }
+    gHsmaSum = gHsmaSum.reverse();
+    gSsmaSum = gSsmaSum.reverse();
+
     console.log("차트 데이터 저장");
     _chart = new Highcharts.StockChart({
       chart: {
@@ -132,42 +172,7 @@ console.log(companycode);
             })(volSeries.pointAttribs);
             // Need to call update so the changes get taken into account on first draw.
             this.update({});
-            setInterval(function () {
-              $.ajax({
-                  url: selected + "?companycode=" + companycode,
-                  type: "GET",
-                  dataType: "json",
-                  async: false,
-                  success: function(data) {
-                    // split the data set into ohlc and volume
-                    var volumeColor = '';
-                    var ohlc = [],
-                        volume = [],
-                        dataLength = data.length;
-
-                    for (i = 0; i < dataLength; i++) {
-                      ohlc.push([
-                        data[i][0], // the date
-                        data[i][1], // open
-                        data[i][2], // high
-                        data[i][3], // low
-                        data[i][4] // close
-                      ]);
-                      volume.push([
-                        data[i][0], // the date
-                        data[i][5] // the volume
-                      ]);
-                      // console.log(volume);
-                    }
-                    _chart.series[0].setData(ohlc);
-                    _chart.series[1].setData(volume);
-                    // console.log(data);
-                    console.log(selected+"?companycode="+companycode);
-                  },
-                  cache: false
-              });
-              console.log("ajax 호출");
-            },5000)
+            test= setInterval(ftest, 5000);
           }
         }
       },
@@ -203,6 +208,11 @@ console.log(companycode);
         }
       },
       yAxis: [{
+        labels: {
+          align: 'left',
+          x: 5,
+          // format:'{value} %'
+        },
         height: '80%',
         lineWidth: 2,
         resize: {
@@ -210,8 +220,8 @@ console.log(companycode);
         },
       }, {
         labels: {
-        align: 'right',
-        x: -3
+        align: 'left',
+        x: 5
         },
         top: '80%',
         height: '20%',
@@ -254,55 +264,139 @@ console.log(companycode);
         yAxis: 1,
         turboThreshold: Number.MAX_VALUE
       }, {
-        type: 'Hegg11',
         name: '황금추세 상선',
-        linkedTo: 'price',
+        data: HsmaSum,
         zIndex: 1,
         color: '#FF607B',
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        },
+        tooltip: {
+             valueDecimals: 2
+         }
       }, {
-        type: 'Legg11',
         name: '황금추세 하선',
-        linkedTo: 'price',
+        data: SsmaSum,
         zIndex: 1,
         color: '#5F7AFF',
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        }
-      }, {
-        type: 'Hegg30',
-        name: '황금추세 상선',
-        linkedTo: 'price',
-        zIndex: 1,
-        color: '#A0A0A0',
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        }
-      }, {
-        type: 'Legg30',
-        name: '황금추세 하선',
-        linkedTo: 'price',
-        zIndex: 1,
-        color: '#A0A0A0',
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        }
+        tooltip: {
+             valueDecimals: 2
+         }
+       }, {
+         name: '황금추세 상선',
+         data: gHsmaSum,
+         zIndex: 1,
+         color: '#A0A0A0',
+         tooltip: {
+              valueDecimals: 2
+          }
+       }, {
+         name: '황금추세 하선',
+         data: gSsmaSum,
+         zIndex: 1,
+         color: '#A0A0A0',
+         tooltip: {
+              valueDecimals: 2
+          }
       }]
     });
-      console.log("차트그리기");
+    console.log("차트그리기");
+  });
+  function ftest() {
+    $.ajax({
+        url: selected,
+        type: "GET",
+        dataType: "json",
+        async: true,
+        success: function(data) {
+          // split the data set into ohlc and volume
+          var volumeColor = '';
+          var ohlc = [],
+              volume = [],
+              Hsma = [],
+              HsmaSum = [],
+              SsmaSum = [],
+              Ssma = [],
+              gHsmaSum = [],
+              gSsmaSum = [],
+              dataLength = data.length;
+
+          for (i = 0; i < dataLength; i++) {
+            ohlc.push([
+                data[i][0], // the date
+                data[i][1], // open
+                data[i][2], // high
+                data[i][3], // low
+                data[i][4] // close
+            ]);
+            volume.push([
+              data[i][0], // the date
+              data[i][5] // the volume
+            ]);
+            Hsma.push([
+              data[i][0],
+              data[i][2]
+            ]);
+            Ssma.push([
+              data[i][0],
+              data[i][3]
+            ]);
+            // console.log(volume);
+          }
+          var Hresult = 0;
+          var Hcusma = 0;
+          var Sresult = 0;
+          var Scusma = 0;
+          for(var i = Hsma.length-1; i >= 11; i--){
+            for(var j = 1; j < 12; j++){
+              Hcusma += parseFloat(Hsma[i-j][1]);
+              Scusma += parseFloat(Ssma[i-j][1]);
+            }
+            Hresult = (Hcusma / 11) * 1.00095;
+            // Hresult = (Math.ceil(Hresult));
+            Hcusma = 0;
+            Sresult = (Scusma / 11) * 0.99899;
+            // Sresult = (Math.ceil(Sresult));
+            Scusma = 0;
+            HsmaSum.push([Hsma[i][0],Hresult]);
+            SsmaSum.push([Ssma[i][0],Sresult]);
+          }
+          HsmaSum = HsmaSum.reverse();
+          SsmaSum = SsmaSum.reverse();
+
+          var gHresult = 0;
+          var gHcusma = 0;
+          var gSresult = 0;
+          var gScusma = 0;
+          for(var i = Hsma.length-1; i >= 29; i--){
+            for(var j = 1; j < 30; j++){
+              gHcusma += parseFloat(Hsma[i-j][1]);
+              gScusma += parseFloat(Ssma[i-j][1]);
+            }
+            gHresult = (gHcusma / 30) * 1.0359;
+            // Hresult = (Math.ceil(Hresult));
+            gHcusma = 0;
+            gSresult = (gScusma / 30) * 1.0331;
+            // Sresult = (Math.ceil(Sresult));
+            gScusma = 0;
+            gHsmaSum.push([Hsma[i][0],gHresult]);
+            gSsmaSum.push([Ssma[i][0],gSresult]);
+          }
+          gHsmaSum = gHsmaSum.reverse();
+          gSsmaSum = gSsmaSum.reverse();
+
+          _chart.series[0].setData(ohlc);
+          _chart.series[1].setData(volume);
+          _chart.series[2].setData(HsmaSum);
+          _chart.series[3].setData(SsmaSum);
+          _chart.series[4].setData(gHsmaSum);
+          _chart.series[5].setData(gSsmaSum);
+          // console.log(data);
+        },
+        cache: false
+    });
+    console.log("ajax 호출");
+  }
+  $(document).ready(function(){
+    $('input[name=buttons]').change(function() {
+      clearInterval(test);
+    });
   });
 });

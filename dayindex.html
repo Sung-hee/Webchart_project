@@ -9,11 +9,10 @@
   <script src="./javascript/highstock.js"></script>
   <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   <script src="./indicators/indicators.js"></script>
-  <script src="./indicators/indicators10.js"></script>
-  <script src="./indicators/indicators15.js"></script>
-  <script src="./indicators/indicators30.js"></script>
+  <script src="./indicators/indicators20.js"></script>
   <script src="./indicators/indicators60.js"></script>
-  <script src="./charts/daychart.js"></script>
+  <script src="./indicators/indicators120.js"></script>
+  <script src="./webcharts/daychart.js"></script>
 
   <title>Dashboard Template for Bootstrap</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -39,7 +38,7 @@
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
-          <ul class="nav flex-column">
+          <ul class="navbar-nav px-3">
             <li class="nav-item">
               <a class="nav-link active" href="#">
                 <span data-feather="home"></span>
@@ -117,8 +116,10 @@
           <h1 class="h2">Dashboard</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Share</button>
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
+              <!-- <button class="btn btn-sm btn-outline-secondary" value="1">Share</button>
+              <button class="btn btn-sm btn-outline-secondary" name="2">Export</button> -->
+              <a href="/"><input type="radio" name="grouping" value="day"/> 일봉</a>
+              <input type="radio" name="grouping" value="week"/> 주봉
             </div>
             <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
               <span data-feather="calendar"></span>

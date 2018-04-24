@@ -1,1 +1,104 @@
-eval(function(e,a,c,r,t,n){if(t=function(e){return(e<62?"":t(parseInt(e/62)))+((e%=62)>35?String.fromCharCode(e+29):e.toString(36))},!"".replace(/^/,String)){for(;c--;)n[t(c)]=r[c]||t(c);r=[function(e){return n[e]}],t=function(){return"\\w+"},c=1}for(;c--;)r[c]&&(e=e.replace(new RegExp("\\b"+t(c)+"\\b","g"),r[c]));return e}("2M(2H(p,a,c,k,e,r){e=2H(c){2G(c<a?'':e(2S(c/a)))+((c=c%a)>35?2L.2N(c+29):c.2Q(36))};2K(!''.2J(/^/,2L)){2I(c--)r[e(c)]=k[c]||e(c);k=[2H(e){2G r[e]}];e=2H(){2G'\\\\w+'};c=1};2I(c--)2K(k[c])p=p.2J(2O 2P('\\\\b'+e(c)+'\\\\b','g'),k[c]);2G p}('1y(1m(p,a,c,k,e,r){e=1m(c){1n(c<a?\\'\\':e(1w(c/a)))+((c=c%a)>1x?1r.1z(c+29):c.1u(1v))};1o(!\\'\\'.1q(/^/,1r)){1p(c--)r[e(c)]=k[c]||e(c);k=[1m(e){1n r[e]}];e=1m(){1n\\'\\\\\\\\w+\\'};c=1};1p(c--)1o(k[c])p=p.1q(1s 1t(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);1n p}(\\'(3(e){\"V\"===Z s&&s.D?s.D=e:e(W)})(3(e){(3(c){4 e=c.1e,h=c.1i,p=c.1g,k=c.M,q=c.10,l=c.P;c=c.1j;c(\"1h\",\"15\",{C:G 0,S:{X:0},y:G 0,w:{t:0,u:11}},{o:{v:!0,E:\"1f\"},r:[\"u\"],J:[],x:\"j\",j:3(b,d){3 c(){4 b=a.F(a.i,a.9.w)||{z:[],8:[],7:[]};a.8=b.8;a.7=b.7;a.9.1k=b.z;!1===a.o.v&&(Q a.R,a.1l=!0,a.T());a.U=!1}4 a=2;k.H.j.I(a,b,d);b.Y();a.A=[];B(!a.i)6 p(\"M \"+a.9.y+\" 12 13! 14 `y`.\");a.A.5(l(a.o.v?a.i:a.i.16,a.o.E,c));B(\"j\"===a.x)c();17 4 e=l(a.18,a.x,3(){c();e()});6 a},19:3(){4 b=2.C,d=[];b||(h(2.r,3(b,a){d.5(2.9.w[b]+e(2.J[a],\"\"))},2),b=(2.1a||2.1b.1c())+(2.r?\" (\"+d.1d(\", \")+\")\":\"\"));6 b},F:3(b,d){4 c=d.u,a=b.8;b=b.7;4 e=b.L,f=0,m=0,h=[],k=[],l=[],g=-1,n;B(a.L<c)6!1;N(q(b[0])&&(g=d.t?d.t:0);f<c-1;)m+=0>g?(b[f])*1.O:(b[f][g])*1.O,f++;N(d=f;d<e;d++)m+=0>g?b[d]:b[d][g],n=[a[d],m/c],h.5(n),k.5(n[0]),l.5(n[1]),m-=0>g?b[d-f]:b[d-f][g];6{z:h,8:k,7:l}},K:3(){h(2.A,3(b){b()});k.H.K.I(2)}})})(e)});\\',1A,1B,\\'||1C|1m|1D|1E|1n|1F|1G|1H|||||||||1I|1J|||||1K|||1L|1M|1N|1O|1P|1Q|1R|1S|1T|1U|1o|1V|1W|1X|1Y|1Z|20|21|22|23|24|25|26|27|28|2a|2b|2c|2d|2e|2f|2g|2h|2i|2j|2k||2l|2m|2n|2o|2p|2q|2r|2s|2t|2u|2v|2w|2x|2y|2z|2A|2B|2C|2D|2E\\'.2F(\\'|\\'),0,{}))',2R,2U,'||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||2H|2G|2K|2I|2J|2L|2O|2P|2Q|36|2S|35|2M|2N|2R|2V|2W|2X|2Y|2Z|30|31|32|33|34|37|38|39|3a|3b|3c|3d|3e|3f|3g|3h|3i|3j|3k|3l|3m|3n|3o|3p|3q|3r|3s|3t|3u||3v|3w|3x|3y|3z|3A|3B|3C|3D|3E|3F|3G|3H|3I|3J|3K|3L|3M|3N|3O|3P|3Q|3R|3S|3T|3U|3V|3W|3X|3Y|3Z|2T'.2T('|'),0,{}))",0,248,"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||return|function|while|replace|if|String|eval|fromCharCode|new|RegExp|toString|62|parseInt|split|166|84|this|var|push|yData|xData|options|linkedParent|init|bindTo|||nameComponents|module|index|period|series|params|calculateOn|linkedTo|values|dataEventsToUnbind|name|exports|eventName|getValues|void|prototype|call|nameSuffixes|destroy|length|Series|for|0009|addEvent|delete|processedXData|tooltip|redraw|isDirtyData|object|Highcharts|valueDecimals|linkSeries|typeof|isArray|not|found|Check|line|xAxis|else|chart|getName|nameBase|type|toUpperCase|join|pick|updatedData|error|Hegg11|each|seriesType|data|isDirty".split("|"),0,{}));
+/*
+  Highcharts JS v6.0.6 (2018-02-05)
+
+ Indicator series type for Highstock
+
+ (c) 2010-2017 Pawel Fus, Sebastian Bochan
+
+ License: www.highcharts.com/license
+*/
+(function(e) {
+    "object" === typeof module && module.exports ? module.exports = e : e(Highcharts)
+})(function(e) {
+    (function(c) {
+        var e = c.pick,
+            h = c.each,
+            p = c.error,
+            k = c.Series,
+            q = c.isArray,
+            l = c.addEvent;
+        c = c.seriesType;
+        c("Hegg11", "line", {
+            name: void 0,
+            tooltip: {
+                valueDecimals: 0
+            },
+            linkedTo: void 0,
+            params: {
+                index: 0,
+                period: 11
+            }
+        }, {
+            bindTo: {
+                series: !0,
+                eventName: "updatedData"
+            },
+            nameComponents: ["period"],
+            nameSuffixes: [],
+            calculateOn: "init",
+            init: function(b, d) {
+                function c() {
+                    var b = a.getValues(a.linkedParent, a.options.params) || {
+                        values: [],
+                        xData: [],
+                        yData: []
+                    };
+                    a.xData = b.xData;
+                    a.yData = b.yData;
+                    a.options.data = b.values;
+                    !1 === a.bindTo.series && (delete a.processedXData, a.isDirty = !0, a.redraw());
+                    a.isDirtyData = !1
+                }
+                var a = this;
+                k.prototype.init.call(a, b, d);
+                b.linkSeries();
+                a.dataEventsToUnbind = [];
+                if (!a.linkedParent) return p("Series " + a.options.linkedTo + " not found! Check `linkedTo`.");
+                a.dataEventsToUnbind.push(l(a.bindTo.series ? a.linkedParent : a.linkedParent.xAxis, a.bindTo.eventName, c));
+                if ("init" === a.calculateOn) c();
+                else var e = l(a.chart, a.calculateOn, function() {
+                    c();
+                    e()
+                });
+                return a
+            },
+            getName: function() {
+                var b = this.name,
+                    d = [];
+                b || (h(this.nameComponents, function(b, a) {
+                    d.push(this.options.params[b] + e(this.nameSuffixes[a], ""))
+                }, this), b = (this.nameBase || this.type.toUpperCase()) + (this.nameComponents ? " (" + d.join(", ") + ")" : ""));
+                return b
+            },
+            getValues: function(b, d) {
+                var c = d.period,
+                    a = b.xData;
+                b = b.yData;
+                var e = b.length,
+                    f = 0,
+                    m = 0,
+                    h = [],
+                    k = [],
+                    l = [],
+                    g = -1,
+                    n;
+                if (a.length < c) return !1;
+                for (q(b[0]) && (g = d.index ? d.index : 0); f < c - 1;) m += 0 > g ? (b[f]) * 1.0013 : (b[f][g]) * 1.0013, f++;
+                for (d = f; d < e; d++) m += 0 > g ? b[d] : b[d][g], n = [a[d], m /
+                    c
+                ], h.push(n), k.push(n[0]), l.push(n[1]), m -= 0 > g ? b[d - f] : b[d - f][g];
+                return {
+                    values: h,
+                    xData: k,
+                    yData: l
+                }
+            },
+            destroy: function() {
+                h(this.dataEventsToUnbind, function(b) {
+                    b()
+                });
+                k.prototype.destroy.call(this)
+            }
+        })
+    })(e)
+});

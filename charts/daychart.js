@@ -1,5 +1,5 @@
 var _chart;
-var selected = "http://61.72.187.6/attn/maker";
+var selected = "http://13.125.147.26/attn/maker.php";
 
 var getParam = function(key){
     var _parammap = {};
@@ -16,13 +16,15 @@ var getParam = function(key){
 
 var companycode = getParam("name");
 
-$.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
+$.getJSON("http://13.125.147.26/phps/now?name=" + companycode, function(data){
   var json_data = "";
 
   $.each(data, function(key, value){
     json_data += value.code;
   });
   console.log(json_data);
+  var test;
+
   $(function stock(){
     Highcharts.setOptions({
       global : {
@@ -137,42 +139,7 @@ $.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
             })(volSeries.pointAttribs);
             // Need to call update so the changes get taken into account on first draw.
             this.update({});
-            setInterval(function () {
-              $.ajax({
-                  url: selected + "?companycode=" + json_data,
-                  type: "GET",
-                  dataType: "json",
-                  async: false,
-                  success: function(data) {
-                    // split the data set into ohlc and volume
-                    var volumeColor = '';
-                    var ohlc = [],
-                        volume = [],
-                        dataLength = data.length;
-
-                    for (i = 0; i < dataLength; i++) {
-                      ohlc.push([
-                        data[i][0], // the date
-                        data[i][1], // open
-                        data[i][2], // high
-                        data[i][3], // low
-                        data[i][4] // close
-                      ]);
-                      volume.push([
-                        data[i][0], // the date
-                        data[i][5] // the volume
-                      ]);
-                      // console.log(volume);
-                    }
-                    _chart.series[0].setData(ohlc);
-                    _chart.series[1].setData(volume);
-                    // console.log(data);
-                    // console.log(selected+"?companycode="+companycode);
-                  },
-                  cache: false
-              });
-              console.log("ajax 호출");
-            },5000)
+            test = setInterval(ftest, 5000);
           },
         }
       },
@@ -205,6 +172,11 @@ $.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
         tickPixelInterval: 150
       },
       yAxis: [{
+        labels: {
+          align: 'left',
+          x: 5,
+          // format:'{value} %'
+        },
         height: '80%',
         lineWidth: 2,
         resize: {
@@ -212,8 +184,8 @@ $.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
         },
       }, {
         labels: {
-        align: 'right',
-        x: -3
+        align: 'left',
+        x: 5
         },
         top: '80%',
         height: '20%',
@@ -267,30 +239,8 @@ $.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
           groupPixelWidth: 500
         },
       }, {
-        type: 'sma10',
-        name: '이평선 (10)',
-        linkedTo: 'price',
-        zIndex: 1,
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        }
-      }, {
-        type: 'sma15',
-        name: '이평선 (15)',
-        linkedTo: 'price',
-        zIndex: 1,
-        marker: {
-            enabled: false
-        },
-        dataGrouping: {
-          groupPixelWidth: 500
-        }
-      }, {
-        type: 'sma30',
-        name: '이평선 (30)',
+        type: 'sma20',
+        name: '이평선 (20)',
         linkedTo: 'price',
         zIndex: 1,
         marker: {
@@ -310,10 +260,62 @@ $.getJSON("http://61.72.187.6/phps/now?name=" + companycode, function(data){
         dataGrouping: {
           groupPixelWidth: 500
         }
+      }, {
+        type: 'sma120',
+        name: '이평선 (120)',
+        linkedTo: 'price',
+        zIndex: 1,
+        marker: {
+            enabled: false
+        },
+        dataGrouping: {
+          groupPixelWidth: 500
+        }
       }]
     });
       // console.log(volume);
       console.log("차트그리기");
+    });
+  });
+  function ftest(){
+    $.ajax({
+        url: selected + "?companycode=" + json_data,
+        type: "GET",
+        dataType: "json",
+        async: true,
+        success: function(data) {
+          // split the data set into ohlc and volume
+          var volumeColor = '';
+          var ohlc = [],
+              volume = [],
+              dataLength = data.length;
+
+          for (i = 0; i < dataLength; i++) {
+            ohlc.push([
+              data[i][0], // the date
+              data[i][1], // open
+              data[i][2], // high
+              data[i][3], // low
+              data[i][4] // close
+            ]);
+            volume.push([
+              data[i][0], // the date
+              data[i][5] // the volume
+            ]);
+            // console.log(volume);
+          }
+          _chart.series[0].setData(ohlc);
+          _chart.series[1].setData(volume);
+          // console.log(data);
+          // console.log(selected+"?companycode="+companycode);
+        },
+        cache: false
+    });
+    console.log("ajax 호출");
+  }
+  $(document).ready(function(){
+    $('input[name=buttons]').change(function() {
+      clearInterval(test);
     });
   });
 });

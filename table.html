@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./table/jsonTable.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+    <script src="./table/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <div clase="serch-conditions">
+        <form action="/home/tables" method="get" style="margin: 10px;">
+          <div style="display: block; float: right;">
+            <label style="float: left; margin-right: 1em">황금알점수</label>
+              <div style="float: left">
+                <input id="goldS" type="number" name="goldS" placeholder="최저값을 입력하세요"></input> ~
+                <input id="goldE" type="number" name="goldE" placeholder="최고값을 입력하세요"></input>
+                <!-- <select id="gold" name="gold" class="form-control">
+                  <option value="1">1등급</option>
+                  <option value="2">2등급</option>
+                  <option value="3">3등급</option>
+                  <option value="4">4등급</option>
+                  <option value="5">5등급</option>
+                </select> -->
+              </div>
+            <div style="position: absolute; visibility: collapse;">
+              <input id="power" name="power" class="form-control" value="11111" style="margin: 0rem 1rem; visibility: collapse;">
+              </input>
+              <input id="supply" name="supply" class="form-control" value="11111" style="margin: 0rem 1rem; visibility: collapse;">
+              </input>
+              <input id="performance" name="performance" value="11111" class="form-control" style="margin: 0rem 1rem; visibility: collapse;">
+              </input>
+              <input id="value" name="value" class="form-control" value="11111" style="margin: 0rem 1rem; visibility: collapse;">
+              </input>
+            </div>
+            <input type="submit" value="검색" class="btn btn-primary" style="float: right; margin: auto;">
+          </div>
+          <div class="table-responsive">
+            <table class="table" id="stock_table" width="100%; margin:0;">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <label style="margin: 0rem 1rem">종목명</label>
+                  </th>
+                  <th scope="col">
+                    <label for="gold" style="margin: 0rem 1rem">황금알점수</label>
+                  </th>
+                  <th scope="col">
+                    <label for="power" style="margin: 0rem 1rem">파워등급</label>
+                  </th>
+                  <th scope="col">
+                    <label for="supply" style="margin: 0rem 1rem">수급등급</label>
+                  </th>
+                  <th scope="col">
+                    <label for="performance" style="margin: 0rem 1rem">실적등급</label>
+                  </th>
+                  <th scope="col">
+                    <label for="value" style="margin: 0rem 1rem">현재가치</label>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

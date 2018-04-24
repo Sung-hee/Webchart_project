@@ -5,7 +5,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="./javascript/gift_highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="./indicators/indicators.js"></script>
     <script src="./indicators/Hgiftegg11.js"></script>
     <script src="./indicators/Lgiftegg11.js"></script>
     <script src="./indicators/Hgiftegg30.js"></script>
@@ -32,14 +31,19 @@
       </div>
     </div>
   </body>
+  <input type="radio" name="buttons" value="">gd
   <div id="container" style="width:100%; height: 85%; min-width: 100%; margin:0;"></div>
 </html>
 
 
 <script>
   var height = $(window).height()*0.888;
+  var ctest;
+
   $(document).ready(function() {
-  setInterval(function () {
+    ctest = setInterval(ajaxtable, 5000);
+  });
+  function ajaxtable(){
     $.ajax({
       url: "http://61.72.187.6/phps/c1c2",
       type: "GET",
@@ -51,14 +55,14 @@
           json_data += '<button type="button" class="btn btn-danger" style="width:33%; font-size:15px;"disabled>'+'고&nbsp&nbsp&nbsp'+value.dayc1high+'</br>'+'고&nbsp&nbsp&nbsp'+value.dayc2high+'</button>';
           json_data += '<button type="button" class="btn btn-warning" style="width:33%; font-size:15px;" disabled>'+value.c1+'&nbsp&nbsp&nbsp'+value.c1high+'</br>'+'C2&nbsp&nbsp&nbsp'+value.c2high+'</button>';
           json_data += '<button type="button" class="btn btn-primary" style="width:33%; font-size:15px;" disabled>'+'저&nbsp&nbsp&nbsp'+value.dayc1low+'</br>'+'저&nbsp&nbsp&nbsp'+value.dayc2low+'</button>';
-          // json_data += '</br></br>'
-          // json_data += '<button type="button" class="btn btn-danger" style="width:33%; height:40; font-size:20px;"disabled>'+'고&nbsp&nbsp&nbsp'+value.dayc2high+'</button>';
-          // json_data += '<button type="button" class="btn btn-warning" style="width:33%; height:40; font-size:20px;" disabled>'+value.c2+'&nbsp&nbsp&nbsp'+value.c2high+'</button>';
-          // json_data += '<button type="button" class="btn btn-primary" style="width:33%; height:40; font-size:20px;" disabled>'+'저&nbsp&nbsp&nbsp'+value.dayc2low+'</button>';
         });
         $('#chart').html(json_data);
       }
     });
-  }, 5000);
-});
+  }
+  $(document).ready(function(){
+    $('input[name=buttons]').change(function() {
+      clearInterval(ctest);
+    });
+  });
 </script>
